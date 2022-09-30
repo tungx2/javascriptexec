@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript_control(01_if)</title>
+    <!-- font awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        span{
+            color: #f00;
+            font-weight: bold;
+        }
+        /* 좌,우 방향버튼을 활용한 페이지 넘기기 서식 */
+        #page{
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+        i.fas{
+            padding: 4px 8px;
+            border: 1px solid #333333;
+            cursor: pointer;
+        }
+        article{
+            width: 400px;
+            height: 560px;
+            border: 5px solid rgb(255,255,255);
+            box-shadow: 0px 0px 10px #333333;
+            padding: 20px;
+            text-align: right;
+        }
+        article img{
+            padding-top: 10px;
+        }
+    </style>
+    <script>
+        //2.if문
+        if(1 =='1'){//만약에 1과 '1'이 같다면 아래 내용을 실행
+            document.write('위 수식은 <span>참</span>입니다.<br>')
+        }
+        //2.if else문 사용하기
+        if(1 === '1'){//숫자1과 문자 1이 같다면 아래 내용을 실행
+            document.write(`(1 === '1')위 수식은 <span>참</span>입니다.<br>`)
+        }else{
+            document.write(`(1 === '1')위 수식은 <span>거짓</span>입니다.<br>`)
+        }
+
+        //삼항조건 연산자
+        (1 == '1')?document.write('위 수식은 <span>참</span>입니다.<br>'):document.write('위 수식은 <span>거짓</span>입니다.<br>')
+
+        //문. 사용자가 입력한 숫자를 가지고 '홀수', '짝수'인지 판단하는 조건식 만들기
+        let n= prompt('숫자를 입력하세요')
+        if(n%2==0){
+            document.write(`<p>입력하신 숫자 ${n}은 <span>짝수</span>입니다.</p>`)
+        }else{
+            document.write(`<p>입력하신 숫자${n}은 <span>홀수</span>입니다`)
+        }
+
+        // 성적을 이용해 수,우,미,양,가
+        let score= prompt('자신의 평균 점수를 입력하세요 예)90,80,40');
+        if(score>=90){
+            document.write(`<p>당신의 성적${score}은 <span>1등급</sapn>입니다</p>`);
+        }else if(score>=80){
+            document.write(`<p>당신의 성적${score}은 <span>2등급</sapn>입니다</p>`);
+        }else if(score>=70){
+            document.write(`<p>당신의 성적${score}은 <span>3등급</sapn>입니다</p>`);
+        }else if(score>=60){
+            document.write(`<p>당신의 성적${score}은 <span>4등급</sapn>입니다</p>`);
+        }else{
+            document.write(`<p>당신의 성적${score}은 <span>5등급</sapn>입니다</p>`);
+        }
+    </script>
+</head>
+<body>
+    <h2>javascript_제어문_if문</h2>
+    <p>제어문이란? 프로그램의 실행을 제어(control) 하기 위해 사용하는 실행문으로서 조건문 (if,else, else if), 선택문(switch case),반복문(while, do while, for)이 있다.</p>
+    
+    <h3>1.조건문 - if,else else if</h3>
+    <ul>
+        <li>if문 - 조건식이 만족할 때만 실행되는 조건문이다.</li>
+        <li>else문 - 조건식이 만족하면 true, 만족하지 않으면 false가 나오도록 하는 조건문이다.</li>
+        <li>esle if문 - 조건식이 여러 개일 경우 다양한 결과값을 얻기 위한 조건문이다.</li>
+    </ul>
+
+        <h3>교보문고 책이미지를 콘텐츠 구현하기</h3>
+        <p>좌, 우측 방향 버튼을 클릭 시 숫자 증가/감소 기능 만들기</p>
+        <p>변수값이 변경될 때 이미지 파일명도 변경하여 페이지 넘기기</p>
+
+        <article>  
+        <span id="page">&nbsp;</span>
+        <i class="fas fa-angle-left" onclick="minus();"></i>
+        <i class="fas fa-angle-right" onclick="plus();"></i>
+        <div>
+            <img src="./images/book1.jpg" alt="" id="book">
+        </div>
+    </article>
+
+    <script>
+        let num= 1; //초기값
+
+        document.getElementById('page').innerHTML=num+' /10'
+
+        //함수 만들기
+        function plus(){
+            if(num==10){ //만약에 마지막 이미지라
+                num=1; //처음 이미지가 나오게 하고   
+        }else{ //그게 아니라면
+                num++;//다음이미지가 나오게
+            }
+            console.log(num)
+            document.getElementById('book').src='./images/book'+num+'.jpg'
+            document.getElementById('page').innerHTML=num+' /10'
+        }
+
+        function minus(){
+            if(num==1){// 처음이미지라면
+                num=10; //10이 나오게
+            }
+        else{ //그게 아니라면
+            num--; //하나씩 감소하게 한다.
+            }
+            console.log(num);
+            document.getElementById('book').src='./images/book'+num+'.jpg'
+            document.getElementById('page').innerHTML=num+' /10'
+         }
+
+
+    </script>
+</body>
+</html>  

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery_slider(swiper) 스와이퍼 슬라이드</title>
+    <style>
+        main{
+            max-width: 767px;
+            overflow: hidden;
+            margin: 0px auto;
+            border: 3px solid #333;
+        }
+        main h3{
+            text-align: center;
+        }
+        main img{
+            width: 100%;
+        }
+    </style>
+    <!-- 스와이퍼 슬라이드 서식 -->
+    <link rel="stylesheet" href="./css/swiper.css" type="text/css">
+    <!-- 스와이퍼 슬라이드 스크립트 소스 -->
+    <script src="./script/swiper.js"></script>
+</head>
+<body>
+    <h3>jquery_slider(swiper)스와이퍼 슬라이드</h3>
+    <p>http://swiperjs.com 스와이퍼 슬라이드 플러그인 - 모바일 터치 통작에 최적화 되어있으며 여러가지 형태의 슬라이드를 제작할 수 있다</p>
+    <dl>
+        <dt>작성방법</dt>
+        <dd>1. css폴더 안에 swiper.css 문서를 저장하고 html문서에 link삽입한다.</dd>
+        <dd>2. script 폴더안에 swiper.js 문서를 저장하고 html 문서에 script를 삽입한다.</dd>
+        <dd>3. 슬라이드를 삽입하기 위한 영역에 div class="swiper-container" 태그를 영역으로 만든다.</div></dd>
+        <dd>4. swiper-container이름 옆에 클래스명 하나 더 추가해서 만든다. 슬라이드가 여러개일 경우 겹치지 않게 하기 위함.</dd>
+        <dd>5. container 안에 .swiper-wrapper영역을 만든다.</dd>
+        <dd>6. .swiper-wrapper 영역 안에 들어갈 이미지 영역을 .swiper-slide로 만든다.</dd>
+        <dd>7. 좌,우 방향버튼을 삽입시 div class="siwper-button-next", div class="swiper-button-prev "</dd>
+        <dd>8. 컨트롤 버튼 삽입시 div class="swiper-pagination"을 마지막 /div 위에 삽입한다.</dd>
+        <dd>9. body아래 마지막 줄에 script소스 코드를 넣어서 슬라이드가 움직이게 만든다.</dd>
+    </dl>
+
+    <main>
+    <!-- 메인슬라이드 -->
+    <article class="mslide">
+        <h3>메인슬라이드</h3>
+        <div class="swiper-container mslide_wrapper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./images/book1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book2.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </article>
+
+    <article class="product">
+        <h3>추천상품</h3>
+        <div class="swiper-container product_wrapper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./images/book1.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book2.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="./images/book3.jpg" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </article>
+    </main>
+
+
+    <!-- 스와이퍼 슬라이드를 구동시키기 위한 스크립트, 반드시 삽입할 것  -->
+    <script>
+        var swiper = new Swiper(".mslide_wrapper", {
+          spaceBetween: 10,//이미지와 이미지 사이에 간격
+          centeredSlides: true, //슬라이드를 가운데 정렬
+          autoplay: { //자동으로 넘어가는 거
+            delay: 2500,//딜레이 2.5초 
+            disableOnInteraction: false, //스와이프 후 자동 재생
+          },
+          pagination: { //컨트롤 버튼 나오게
+            el: ".swiper-pagination",
+            clickable: true, //버튼 클릭해도 동작되게 함.
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+
+        var swiper = new Swiper(".product_wrapper", {
+          spaceBetween: 30,
+          centeredSlides: false,
+          autoplay: {
+            delay: 3500,//딜레이 3.5초
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          breakpoints:{
+            320:{
+                slidesPerView:2, //레이아웃2
+            },
+            768:{
+                slidesPerView:3,//레이아웃3
+            },
+            1025:{
+                slidesPerView:4,//레이아웃4
+            }
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      </script>
+      </body>
+</body>
+</html>
