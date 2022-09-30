@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript_object-내장객체(DOM)</title>
+    <style>
+        img{width: 800px;}
+        .p01{background: #ff0;}
+    </style>
+    <script>
+        // 1. 타이틀 정보, 주소 가져오기
+        let title= document.title; // 문서의 제목을 title변수에 담는다.
+        let url= document.URL; // 문서의 주소를 가져온다.
+
+        document.write(`<p class="p01">현재 문서의 제목은 ${title}이며, 문서가 위치한 주소는 ${url}입니다.</p>`)
+    </script>
+    <script defer src="./script/dark.js"></script>
+</head>
+<body>
+    <h2>내장객체의 종류</h2>
+    <p>자바스크립트에서 내장객체는 미리 정해진 규칙에 따라 사용하도록 만들어진 객체이다.</p>
+    <dl>
+        <dt>내장객체의 종류</dt>
+        <dd>문서객체 - document</dd>
+        <dd>브라우저객체 - window</dd>
+        <dd>날짜객체 - date</dd>
+        <dd>수학객체 - math</dd>
+        <dd>배열객체 = array</dd>
+        <dd>문자열객체 = string</dd>
+        <dd>함수객체 - function</dd>
+        <dd>기타............</dd>
+    </dl>
+
+    <h3>문서객체모델(DOM - Document Object Model) p:240</h3>
+    <p>DOM이란? 넓은 의미로는 웹브라우저가 HTML태그를 인식하는 방법이고, 좁은 의미로는 웹문서 안에 있는 요소(객체)들의 집합이다.</p>
+    <p>웹브라우저(크롬, 사파리, 파이어폭스, 오페라, 익스플러로(bye), edge, 모바일 브라우저)마다 DOM구현이 호환되지 않아서 W3C에서 DOM에 대한 표준규칙을 작성하였다.</p>
+
+    <h3>DOM TREE 구조의 이해</h3>
+    <p>DOM은 노트(node)==tag들의 집합이라고 할 수 있으며, DOM의 노드에드 요소노트, 속성노드, 텍스트 노드로 구성되어 있다. 노드는 DOM의 구조를 이루는 최소단위이며, 이 노드들의 집합체가 DOM 이라고 할 수 있다.</p>
+
+    <img src="./dom/dom1.jpg" alt="참고사진1">
+    <img src="./dom/dom2.jpg" alt="참고사진1">
+    <img src="./dom/dom3.jpg" alt="참고사진1">
+    <img src="./dom/dom4.jpg" alt="참고사진1">
+
+    <h4>document객체의 속성들</h4>
+
+    <ul>
+        <li>domain - 현재 문서가 있는 서버의 도메인 이름</li>
+        <li>title - 현재 문서의 제목</li>
+        <li>bgColor - 문서의 배경색</li>
+        <li>fgColor - 문서의 글자색</li>
+        <li>linkColor - 문서의 링크 글자색</li>
+        <li>alinkColor - 링크를 클릭하였을 때 글자색</li>
+        <li>vlinkColor - 방문했던 링크의 글자색</li>
+        <li>anchors - 문서의 anchor들의 배열</li>
+        <li>cookie - 쿠키에 대한 정보</li>
+        <li>url - 문서의 url 주소</li>
+    </ul>
+
+    <h4>document객체의 메소드 종류들</h4>
+    <ul>
+        <li>open(); - 데이터를 보낼 준비</li>
+        <li>close(); - 문서에 데이터 출력을 마무리함.</li>
+        <li>clear(); - 브라우저에서 문서를 지움</li>
+        <li>write(); - 문서의 내용을 출력함</li>
+        <li>writeln(); = 문서에 줄(line) 바꾸기를 포함하여 데이터를 출력함</li>
+    </ul>
+
+    <h4>실습1. 현재 작성하고 있는 문서의 title 정보와 url 주소 알아보기</h4>
+    
+    <h4>실습2. 버튼을 클릭하면 문서 안에 글자색상과 배경색 변경하기</h4>
+    <input type="button" value="문서의 배경색 변경하기" onclick="bgColor='#ccc'">
+    <input type="button" value="문서의 글자색 변경하기" onclick="fgColor='#00f'">
+
+    <h4>실습3. '다크모드' 버튼을 만들고 클릭 시 배경 어둡게, 흰색글자, 다시 클릭하면 원상태</h4>
+    <!-- <input type="button" value="다크모드" onclick="darkMode()"> -->
+    <input type="button" value="다크모드" id="dark_btn">
+
+
+
+
+    <script>
+        // 다크모드 버튼 함수
+        let n= 1;
+
+        // function darkMode(){
+        //     if(n==1){
+        //         document.bgColor='#333'
+        //         document.fgColor='#fff'
+        //         console.log(n)
+        //         n=0;
+        //     }else{
+        //         document.bgColor='#fff'
+        //         document.fgColor='#333'
+        //         console.log(n)
+        //         n=1;
+        //     }
+        // }
+
+
+        //이벤트 querySelector가 있으면 스크립트를 하단으로 내려줘야 함. 아니면 <script defer src="">라고 적어 스크립트를 후순위로 미룬다. defer은 외부서식만 가능함.
+        // const d_btn= document.querySelector('#dark_btn');
+        // d_btn.addEventListener('click', function(){
+        //     if(n==1){
+        //         document.bgColor='#333'
+        //         document.fgColor='#fff'
+        //         console.log(n)
+        //         n=0;
+        //     }else{
+        //         document.bgColor='#fff'
+        //         document.fgColor='#333'
+        //         console.log(n)
+        //         n=1;
+        //     }
+        // })
+    </script>
+</body>
+</html>

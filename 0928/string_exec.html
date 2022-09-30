@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실습예제 이미지 갤러리</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li,ol{list-style: none;}
+        a{text-decoration: none;}
+        .bannerbox{
+            width: 1200px;
+            margin: 0px auto;
+            border: 3px solid #000;
+            position: relative;
+        }
+        .bannerbox ul{
+            display: flex;
+        }
+        .bannerbox img{width: 100%;}    
+        .fa-angle-down{
+            position: absolute;
+            font-size: 40px;
+            width: 50px;
+            height: 40px;
+            background-color: #ccc;
+            text-align: center;
+            top: 450px;
+            left: 0px;
+        }
+        .fa-angle-up{
+            position: absolute;
+            font-size: 40px;
+            width: 50px;
+            height: 40px;
+            background-color: #ccc;
+            text-align: center;
+            top: 450px;   
+            right: 0px;   
+        }
+        #next{
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 14px;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            padding: 4px 8px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+</head>
+<body>
+    <article class="bannerbox">
+        <h2>포토</h2>
+        <ul>
+            <li><img src="../0922/images/banner1.jpg" alt="" onclick="imgChange(1)"></li>
+            <li><img src="../0922/images/banner2.jpg" alt="" onclick="imgChange(2)"></li>
+            <li><img src="../0922/images/banner3.jpg" alt="" onclick="imgChange(3)"></li>
+            <li><img src="../0922/images/banner4.jpg" alt="" onclick="imgChange(4)"></li>
+            <li><img src="../0922/images/banner5.jpg" alt="" onclick="imgChange(5)"></li>
+        </ul>
+        <div id="big_img">
+            <img src="../0922/images/banner1.jpg" alt="" id="main">
+            <i class="fas fa-angle-down"></i>
+            <i class="fas fa-angle-up"></i>
+            <span id="next"></span>
+        </div>
+    </article>
+
+
+
+
+
+
+    <script>
+
+
+
+
+
+        let i=1
+        document.getElementById('next').innerHTML=i+' /5'
+
+        function imgChange(i){
+            console.log(i);
+
+            let src= '../0922/images/banner1.jpg';
+            src= src.replace('1', i);
+
+            document.getElementById('main').src= src;
+            document.getElementById('next').innerHTML=i+' /5'
+        }
+
+        function beforeImg(){
+            if(i==5){
+                i=1
+            }else{
+                i++;
+            }
+            console.log(i);
+            document.getElementById('next').innerHTML=i+' /5'
+            document.getElementById('main').src='../0922/images/banner'+i+'.jpg'
+        }
+
+        //1씩 감소하는
+        function afterImg(){
+            if(i==1){
+                i=5
+            }else{
+                i--;
+            }
+            console.log(i);
+            document.getElementById('next').innerHTML=i+' /5'
+            document.getElementById('main').src='../0922/images/banner'+i+'.jpg'
+        }
+        const l_btn2= document.querySelector('i.fa-angle-down');
+        const r_btn2= document.querySelector('i.fa-angle-up');
+        l_btn2.addEventListener('click',function(e){
+            e.preventDefault();
+            afterImg();
+        })
+        r_btn2.addEventListener('click',function(e){
+            e.preventDefault();
+            beforeImg();
+        })
+    </script>
+</body>
+</html>
